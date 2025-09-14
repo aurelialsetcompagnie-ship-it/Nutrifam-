@@ -1,8 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
-import type { Food } from '../types';
+import type { Food, NutrientData } from '../types';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
 const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error(
+    'VITE_SUPABASE_URL et VITE_SUPABASE_ANON_KEY doivent être définis dans .env'
+  );
+}
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
@@ -126,7 +132,7 @@ export function getSportsNutritionSuggestions(deficiency: string): string[] {
 export async function addCustomFood(foodData: {
   name: string;
   category?: string;
-  nutritionalValues: any;
+  nutritionalValues: NutrientData;
 }): Promise<boolean> {
   try {
     // Générer un ID numérique unique pour l'aliment (bigint compatible)
