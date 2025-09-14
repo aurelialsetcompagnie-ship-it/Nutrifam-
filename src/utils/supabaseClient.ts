@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Food } from '../types';
 
-const supabaseUrl = 'https://cnrwfzotnxsstuaqvrrx.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNucndmem90bnhzc3R1YXF2cnJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc3MDU5NTIsImV4cCI6MjA3MzI4MTk1Mn0.fv5tllpNGeacqOhkDSbB5h0wwG-PbzNDtj8Nai9v9kQ';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
